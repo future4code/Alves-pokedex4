@@ -12,5 +12,6 @@ export function Router() {
                 <Route path="/details" element={Detalhes} />
             </Routes>
         </BrowserRouter>
+        //
     )
 }
