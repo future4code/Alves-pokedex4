@@ -19,7 +19,6 @@ export function Detalhes() {
 
             <h1>Detalhes</h1>
             <img src={retanguloverde}></img>
-
         </div>
     )
 }
