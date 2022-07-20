@@ -1,11 +1,9 @@
-import Detalhes from "./Components/Detalhes";
+import { Router } from "./Routes/Router";
 
-function App() {
+export default function App() {
   return (
     <div>
-      <Detalhes/>
+      <Router />
     </div>
   );
 }
-
-export default App;

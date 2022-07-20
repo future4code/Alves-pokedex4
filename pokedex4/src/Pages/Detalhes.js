@@ -2,7 +2,7 @@ import React from "react";
 import logopoke from "../imagens/logopoke.png";
 import retanguloverde from "../imagens/retanguloverde.png";
 
-export default function Detalhes() {
+export function Detalhes() {
 
 
 

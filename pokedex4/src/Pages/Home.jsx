@@ -1,6 +1,6 @@
 import React from "react";
 
-export function TodosOsPokemons() {
+export function Home() {
     return(
         <div>
             <h1>Todos Os Pokémons</h1>
