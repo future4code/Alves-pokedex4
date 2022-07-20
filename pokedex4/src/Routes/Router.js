@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react";
 import { Home } from '../Pages/Home'
 import {Pokedex} from '../Pages/Pokedex'
-import { Detalhes } from '../Pages/Detalhes'
+import Detalhes from '../Pages/Detalhes'
 
 export function Router() {
     return (
