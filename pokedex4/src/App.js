@@ -1,5 +1,6 @@
 // import { Router } from "./Routes/Router";
 import Detalhes from "./Pages/Detalhes";
+import { Router } from "./Routes/Router";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -13,9 +14,6 @@ const Div = styled.div`
 
 export default function App() {
   return (
-    <Div>
-      {/* <Router /> */}
-      <Detalhes/>
-    </Div>
+      <Router />
   );
 }
