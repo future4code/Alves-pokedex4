@@ -35,12 +35,20 @@ const Button = styled.button`
     position: absolute;
     right: 0px;
     margin-right: 41px;
+
+    font-family: "Poppins";
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #fff;
 `;
 
 const Body = styled.section`
-    padding: 60px 40px;
+    padding: 60px 0;
     display: flex;
     flex-wrap: wrap;
+    width: 1360px;
+    margin: 0 auto;
 `;
 
 const Main = styled.section`
@@ -64,14 +72,14 @@ export function Home() {
     const [pokemonList, setPokemonList] = useState([])
 
     useEffect(() => {
-        for (let i = 1; i < 10; i++) {
+        for (let i = 1; i < 28; i++) {
             axios.get(
                 BASE_URL + "/pokemon/" + i
             ).then((res) => setPokemonList(pokemonList => [...pokemonList, res.data])).catch((err) => console.log(err))
         }
     }, [])
 
-    const pokeList = pokemonList?.map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} />)
+    const pokeList = pokemonList?.sort((a, b)=> a.id - b.id).map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} />)
 
     return (
         <Screen>
