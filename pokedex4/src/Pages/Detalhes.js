@@ -8,7 +8,7 @@ import bulbin from "../imagens/bulbin.png";
 import bulbadefrente from "../imagens/bulbadefrente.png";
 import bulbadecostas from "../imagens/bulbadecostas.png";
 
-
+// estilização:
 const Img = styled.img`
     position: absolute;
     width: 1230px;
