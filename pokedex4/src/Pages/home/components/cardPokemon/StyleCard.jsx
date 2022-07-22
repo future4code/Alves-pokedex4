@@ -14,7 +14,8 @@ export const CardStyle = styled.section`
 `;
 
 export const Left = styled.section`
-  position: relative
+  position: relative;
+
 `;
 
 export const Right = styled.section`

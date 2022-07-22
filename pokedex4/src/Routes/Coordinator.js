@@ -1,3 +1,8 @@
+
+export const irParaHome = (navigate) =>{
+    navigate("/")
+}
+
 export const goToPokedex = (navigate) => {
     navigate("/pokedex")
 }

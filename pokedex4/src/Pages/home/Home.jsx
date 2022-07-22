@@ -39,7 +39,9 @@ export function Home() {
         <Screen>
             <Header>
                 <Img src={opa} alt="" />
+
                 <Button onClick={()=> goToPokedex(navigate)}>Pokédex</Button>
+
             </Header>
             <Body>
                 <Title>Todos Pokémons</Title>
