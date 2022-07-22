@@ -4,8 +4,10 @@ import opa from './img/image.svg'
 import axios from "axios";
 import { BASE_URL } from "../../constants/BASE_URL"
 import { Card } from "./Card";
-import {irParaPokedex} from "../../Routes/Coordinator"
-import {  useNavigate } from "react-router-dom";
+import {irParaHome} from "../../Routes/Coordinator"
+import { useNavigate } from "react-router-dom";
+
+
 
 const Screen = styled.section`
     width: 100%;
@@ -27,16 +29,20 @@ const Img = styled.img`
 margin: 0 auto;
 `;
 
-const Button = styled.button`
-    padding: 4px 10px;
-    width: 287px;
-    height: 74px;   
-    background: #33A4F5;
-    border-radius: 8px;
-    border: none;
-    position: absolute;
-    right: 0px;
-    margin-right: 41px;
+const Voltar = styled.div`
+position: absolute;
+width: 210px;
+height: 36px;
+left: 100px;
+top: 62px;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 36px;
+text-decoration-line: underline;
+color: #1A1A1A;
+cursor: pointer;
 `;
 
 const Body = styled.section`
@@ -62,28 +68,32 @@ const Title = styled.h1`
     margin-bottom: 55px;
 `;
 
-export function Home() {
+export function Pokedex() {
+    const [pokeDex, setPokeDex] = useState([])
     const [pokemonList, setPokemonList] = useState([])
     const navegate = useNavigate()
 
     useEffect(() => {
-        for (let i = 1; i < 10; i++) {
             axios.get(
-                BASE_URL + "/pokemon/" + i
-            ).then((res) => setPokemonList(pokemonList => [...pokemonList, res.data])).catch((err) => console.log(err))
-        }
-    }, [])
+                BASE_URL + "/pokemon/1"
+            ).then((res) =>{
+                 setPokeDex(pokeDex => [...pokeDex, res.data])
+                 console.log(res.data)
+                }).catch((err) => {
+                    console.log(err)}
+                    )
+        }, [])
 
-    const pokeList = pokemonList?.map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} />)
+    const pokeList = pokeDex?.map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} />)
 
     return (
         <Screen>
             <Header>
+                <Voltar onClick={()=>irParaHome(navegate)}>Todos Pokémons</Voltar>
                 <Img src={opa} alt="" />
-                <Button onClick={()=>irParaPokedex(navegate)}>Pokédex</Button>
             </Header>
             <Body>
-                <Title>Todos Pokémons</Title>
+                <Title>Meus Pokémons</Title>
                 <Main>
                     {pokeList}
                 </Main>

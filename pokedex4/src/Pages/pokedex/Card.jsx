@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import fire from './img/Fire.svg'
 import back from './img/back.svg'
+import {irParaDetalhes} from "../../Routes/Coordinator"
+import { useNavigate } from "react-router-dom";
 
 const CardStyle = styled.section`
     width: 440px;
@@ -58,6 +60,7 @@ const Details = styled.p`
   font-size: 16px;
   text-decoration-line: underline;
   color: #FFFFFF;
+  cursor: pointer;
 `;
 
 const Type = styled.div`
@@ -66,13 +69,10 @@ const Type = styled.div`
   align-items: flex-start;
   padding: 5px 8px;
   gap: 17px;
-
   height: 31px;
-
-  background: #F44900;
+  background : #F44900;
   border: 1px dashed rgba(255, 255, 255, 0.47);
   border-radius: 8px;
-
   position: absolute;
   bottom: 90px;
   left: 23px;
@@ -120,12 +120,12 @@ const Pokemon = styled.img`
 
 
 export function Card(props) {
-
+  const navegate = useNavigate()
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const types = props.pokemon.types?.map((type)=> <TypeName>{capitalizeFirstLetter(type.type.name)}</TypeName>)
+  const types = props.pokemon.types?.map((type)=> <TypeName> {capitalizeFirstLetter(type.type.name)} </TypeName>)
 
   console.log(props.pokemon.types.length)
 
@@ -134,7 +134,7 @@ export function Card(props) {
       <Left>
         <Number>#{props.pokemon.id}</Number>
         <Name>{capitalizeFirstLetter(props.pokemon.name)}</Name>
-        <Details>Detalhes</Details>
+        <Details onClick={()=>irParaDetalhes(navegate)}>Detalhes</Details>
         <Type>
           <img src={fire} alt="" />
           {types}

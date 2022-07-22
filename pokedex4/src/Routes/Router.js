@@ -2,10 +2,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from '../Pages/home/Home'
 
-import {Pokedex} from '../Pages/Pokedex'
+import {Pokedex} from '../Pages/pokedex/Pokedex'
 import Detalhes from '../Pages/Detalhes'
 
-export function Router() {
+export function RouterPage() {
     return (
         <BrowserRouter>
             <Routes>
