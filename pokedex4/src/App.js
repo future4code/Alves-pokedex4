@@ -1,5 +1,6 @@
 // import { Router } from "./Routes/Router";
 import Detalhes from "./Pages/Detalhes";
+import { Router } from "./Routes/Router";
 import styled from "styled-components";
 import { Router } from "react-router-dom";
 import { Home } from "./Pages/home/Home"
@@ -18,7 +19,7 @@ export default function App() {
   return (
     <Div>
       <RouterPage/>
-
     </Div>
+
   );
 }
