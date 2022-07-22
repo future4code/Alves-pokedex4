@@ -4,7 +4,7 @@ import opa from './img/image.svg'
 import axios from "axios";
 import { BASE_URL } from "../../constants/BASE_URL"
 import { Card } from "./Card";
-import {irParaHome} from "../../Routes/Coordinator"
+import {goToHome, irParaHome} from "../../Routes/Coordinator"
 import { useNavigate } from "react-router-dom";
 
 
@@ -89,7 +89,7 @@ export function Pokedex() {
     return (
         <Screen>
             <Header>
-                <Voltar onClick={()=>irParaHome(navegate)}>Todos Pokémons</Voltar>
+                <Voltar onClick={()=>goToHome(navegate)}>Todos Pokémons</Voltar>
                 <Img src={opa} alt="" />
             </Header>
             <Body>

@@ -1,5 +1,5 @@
 
-export const irParaHome = (navigate) =>{
+export const goToHome = (navigate) =>{
     navigate("/")
 }
 

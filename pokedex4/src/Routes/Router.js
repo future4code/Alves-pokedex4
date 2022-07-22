@@ -5,7 +5,7 @@ import { Home } from '../Pages/home/Home'
 import {Pokedex} from '../Pages/pokedex/Pokedex'
 import Detalhes from '../Pages/Detalhes'
 
-export function RouterPage() {
+export function RouterComponet() {
     return (
         <BrowserRouter>
             <Routes>

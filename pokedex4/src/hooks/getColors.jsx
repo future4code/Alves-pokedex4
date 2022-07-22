@@ -1,6 +1,6 @@
 import poison from '../Pages/home/img/poison.svg'
 import grass from '../Pages/home/img/grass.svg'
-import fire from '../Pages/home/img/fire.svg'
+import fire from '../Pages/home/img/Fire.svg'
 import water from '../Pages/home/img/water.svg'
 import bug from '../Pages/home/img/bug.svg'
 import normal from '../Pages/home/img/normal.svg'

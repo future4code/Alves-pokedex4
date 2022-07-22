@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import fire from './img/Fire.svg'
 import back from './img/back.svg'
-import {irParaDetalhes} from "../../Routes/Coordinator"
+import {goToDetails, irParaDetalhes} from "../../Routes/Coordinator"
 import { useNavigate } from "react-router-dom";
 
 const CardStyle = styled.section`
@@ -134,7 +134,7 @@ export function Card(props) {
       <Left>
         <Number>#{props.pokemon.id}</Number>
         <Name>{capitalizeFirstLetter(props.pokemon.name)}</Name>
-        <Details onClick={()=>irParaDetalhes(navegate)}>Detalhes</Details>
+        <Details onClick={()=>goToDetails(navegate)}>Detalhes</Details>
         <Type>
           <img src={fire} alt="" />
           {types}
