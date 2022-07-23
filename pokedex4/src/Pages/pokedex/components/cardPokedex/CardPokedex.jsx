@@ -1,4 +1,4 @@
-import { CardStyle, Left, Number, Name, Details, Type, Back, Pokemon, Right, TypeInside, TypeName, Capturar } from './StyleCard';
+import { CardStyle, Left, Number, Name, Details, Type, Back, Pokemon, Right, TypeInside, TypeName, Excluir } from './StyleCardPokedex'
 import { getType } from '../../../../hooks/getColors';
 import back from '../../img/back.svg'
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ export function Card(props) {
         </Type>
       </Left>
       <Right>
-        <Capturar onClick={(()=> props.addPokemon(props.pokemon))}>Capturar!</Capturar>
+        <Excluir onClick={()=>props.removePokemon()}>Excluir!</Excluir>
         <Back src={back} alt="" />
         <Pokemon src={props.pokemon.sprites.other["official-artwork"].front_default} />
       </Right>

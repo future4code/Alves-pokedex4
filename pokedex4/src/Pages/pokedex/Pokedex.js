@@ -1,103 +1,50 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import opa from './img/image.svg'
 import axios from "axios";
 import { BASE_URL } from "../../constants/BASE_URL"
-import { Card } from "./Card";
-import {goToHome, irParaHome} from "../../Routes/Coordinator"
+import { Card } from "./components/cardPokedex/CardPokedex"
+import { Screen, Header, Img, Body, Title, Main, AllPokemons } from './StylePokedex'
+import { goToHome} from "../../Routes/Coordinator";
 import { useNavigate } from "react-router-dom";
-
-
-
-const Screen = styled.section`
-    width: 100%;
-    min-height: 100vh;
-    background-color:#5E5E5E;
-    display: flex;
-    flex-wrap: wrap;
-`;
-
-const Header = styled.section`
-    width: 100%;
-    height: 160px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-`;
-
-const Img = styled.img`
-margin: 0 auto;
-`;
-
-const Voltar = styled.div`
-position: absolute;
-width: 210px;
-height: 36px;
-left: 100px;
-top: 62px;
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 36px;
-text-decoration-line: underline;
-color: #1A1A1A;
-cursor: pointer;
-`;
-
-const Body = styled.section`
-    padding: 60px 40px;
-    display: flex;
-    flex-wrap: wrap;
-`;
-
-const Main = styled.section`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 53px 20px;
-`;
-
-const Title = styled.h1`
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 72px;
-    font-family: 'Poppins';
-    font-style: normal;
-    color: #fff;
-    width: 100%;
-    margin-bottom: 55px;
-`;
+import { Remove } from "./components/cardCatchPokedex/Remove";
 
 export function Pokedex() {
-    const [pokeDex, setPokeDex] = useState([])
     const [pokemonList, setPokemonList] = useState([])
-    const navegate = useNavigate()
+    const [excluir, setExcluir] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
+        JSON.parse(localStorage.getItem("pokedex")).map((item)=>
             axios.get(
-                BASE_URL + "/pokemon/1"
-            ).then((res) =>{
-                 setPokeDex(pokeDex => [...pokeDex, res.data])
-                 console.log(res.data)
-                }).catch((err) => {
-                    console.log(err)}
-                    )
+                BASE_URL + "/pokemon/" +item
+                ).then((res) => setPokemonList(pokemonList => [...pokemonList, res.data])).catch((err) => console.log(err))
+            )
         }, [])
 
-    const pokeList = pokeDex?.map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} />)
+        const removePokemon = (id)=>{
+            setExcluir(!excluir)
+
+
+        }
+
+    const pokeList = pokemonList?.sort((a, b) => a.id - b.id).map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} removePokemon={removePokemon} />)
 
     return (
         <Screen>
             <Header>
-                <Voltar onClick={()=>goToHome(navegate)}>Todos Pokémons</Voltar>
+                <AllPokemons onClick={()=> goToHome(navigate)}>Todos Pokémons</AllPokemons>
                 <Img src={opa} alt="" />
+
+
             </Header>
-            <Body>
+            <Body >
                 <Title>Meus Pokémons</Title>
                 <Main>
                     {pokeList}
+                    {excluir && <Remove setExcluir={setExcluir}/>}
                 </Main>
             </Body>
         </Screen>
     )
 }
+
