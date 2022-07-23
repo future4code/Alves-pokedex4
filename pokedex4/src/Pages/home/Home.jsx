@@ -18,20 +18,15 @@ export function Home() {
                 BASE_URL + "/pokemon/" + i
                 ).then((res) => setPokemonList(pokemonList => [...pokemonList, res.data])).catch((err) => console.log(err))
             }
+            localStorage.getItem("catchedPokemons") === null && localStorage.setItem("catchedPokemons", JSON.stringify([]))
         }, [])
 
     const navigate = useNavigate()
 
     const addPokemon = (pokemon) => {   
-        const catchedPokemons = localStorage.getItem("catchedPokemons") !== null ? JSON.parse(localStorage.getItem("catchedPokemons")) : []
-        const opa = [...catchedPokemons, pokemon]
-        console.log(opa)
-        // localStorage.setItem("catchedPokemons", JSON.stringify(opa))
-        // localStorage.getItem("catchedPokemons") !== null ? localStorage.setItem("catchedPokemons", [...localStorage.getItem("catchedPokemons"), JSON.stringify(pokemon)]) : localStorage.setItem("catchedPokemons", JSON.stringify(pokemon))
-        // setShowGot(!showGot)
-      } 
-
-      // Tentando adicionar os pokemons ao localStorage
+        let getLocal = JSON.parse(localStorage.getItem("catchedPokemons"))
+        localStorage.setItem("catchedPokemons", JSON.stringify([...getLocal, pokemon]))
+      }
 
     const pokeList = pokemonList?.sort((a, b) => a.id - b.id).map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} addPokemon={addPokemon} />)
 
