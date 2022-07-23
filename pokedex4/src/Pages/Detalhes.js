@@ -7,14 +7,22 @@ import pokebola from "../imagens/pokebola.png";
 import bulbin from "../imagens/bulbin.png";
 import bulbadefrente from "../imagens/bulbadefrente.png";
 import bulbadecostas from "../imagens/bulbadecostas.png";
+import { useNavigate } from "react-router-dom";
+import { goToHome } from "../Routes/Coordinator";
+import retangulomaisgrosso from "../imagens/retangulomaisgrosso.png";
+import retangulomaisfino from "../imagens/retangulomaisfino.png";
+
 
 // estilização:
+const Pai = styled.div`
+    position: relative;
+`
 const Img = styled.img`
     position: absolute;
     width: 1230px;
-    height: 500px;
+    height: 625px;
     left: 65px;
-    top: 200px;
+    top: 50px;
 `
 const Header = styled.header`
     background-color: white;
@@ -31,25 +39,87 @@ img {
 }
 `
 const Main = styled.main`
-    border: solid black 2px;
+    position: relative;
+    display: flex;
 `
 const Card1 = styled.div`
-    border: solid black 1px;
-    max-width: 25%;
+    position: absolute;
+    width: 1230px;
+    height: 625px;
+    left: 65px;
+    top: 50px;
+
 `
 const PokeBola = styled.img`
     width: 665.31px;
     height: 665.31px;
+    margin-left: 300px;
+
+`
+const PokebolaPequena = styled.img`
+    position: absolute;
+    width: 565px;
+    height: 465px;
+    left: 650px;
+    top: 100px;
+
 
 `
 const Quadrado = styled.div`
-    align-items: center;
+    position: absolute;
+    width: 282px;
+    height: 282px;
+    left: 44px;
+    top: 25px;
+img{
+    width: 272px;
+    height: 272px; 
+}  
 
 `
 const Quadrado2 = styled.div`
-    align-items: center;
+    position: absolute;
+    width: 282px;
+    height: 282px;
+    left: 44px;
+    top: 325px;
+img{
+    width: 272px;
+    height: 272px; 
+}  
+`
+const BaseStates = styled.div`
+    position: absolute;
+    width: 343px;
+    height: 613px;
+    left: 340px;
+    top: 25px;
+img{
+    height: 571px;
+    width: 330px;
+}
+`
+const Moves = styled.div`
+    position: absolute;
+    width: 200px;
+    height: 453px;
+    left: 695px;
+    top: 184px;
+img{
+    width: 230px;
+}
+`
+const Poke = styled.img`
+    position: absolute;
+    width: 270px;
+    height: 270px;
+    left: 900px;
+    margin-top: 0px;
+    
 `
 export default function Detalhes() {
+
+    const navigate = useNavigate()
 
     const [pokemon, setPokemon] = useState(" ")
 
@@ -71,23 +141,30 @@ export default function Detalhes() {
 
     return(
 
-        <div>
+        <Pai>
 
             <Header>
 
-                <h4>Todos os pokémons</h4>
+                <u onClick={() => navigate("/")}>Todos os pokémons</u>
                 <img src={logopoke}></img>
                 <button>Remover Da Pokédex</button>
 
             </Header>
 
             <h1>Detalhes</h1>
+            
+            <Poke src={bulbin}/>
 
             <Main>
+
                 <Img src={retanguloverde}/>
                 <PokeBola src={pokebola}/>
 
                 <Card1>
+
+
+                    <PokebolaPequena src={pokebola}/>
+
                     <Quadrado>
                         <img src={bulbadefrente}/>
                     </Quadrado>
@@ -95,9 +172,19 @@ export default function Detalhes() {
                     <Quadrado2>
                         <img src={bulbadecostas}/>
                     </Quadrado2>
+
+                    <BaseStates>
+                        <img src={retangulomaisgrosso}/>
+                    </BaseStates>
+
+                    <Moves>
+                        <img src={retangulomaisfino}/>
+                    </Moves>
+
+                    
                 </Card1>
 
             </Main>
-        </div>
+        </Pai>
     )
 }

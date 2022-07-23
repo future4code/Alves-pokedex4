@@ -8,8 +8,8 @@ import { RouterComponet } from "./Routes/Router";
 
 const Div = styled.div`
   background-color: grey;
-  width: 1340px;
-  height: 750px;
+  width: 1349px;
+  height: 850px;
   margin: 0px;
   
 
