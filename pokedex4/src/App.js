@@ -4,7 +4,7 @@ import { RouterComponet } from "./Routes/Router";
 const Div = styled.div`
   background-color: grey;
   width: 1349px;
-  height: 850px;
+  height: 1100px;
   margin: 0px;
   
 

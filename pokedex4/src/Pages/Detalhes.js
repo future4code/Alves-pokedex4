@@ -7,11 +7,12 @@ import pokebola from "../imagens/pokebola.png";
 import bulbin from "../imagens/bulbin.png";
 import bulbadefrente from "../imagens/bulbadefrente.png";
 import bulbadecostas from "../imagens/bulbadecostas.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { goToHome } from "../Routes/Coordinator";
 import retangulomaisgrosso from "../imagens/retangulomaisgrosso.png";
 import retangulomaisfino from "../imagens/retangulomaisfino.png";
-
+import statusbulba from "../imagens/statusbulba.png";
+import { Card } from "./home/components/cardPokemon/Card";
 
 // estilização:
 const Pai = styled.div`
@@ -41,6 +42,7 @@ img {
 const Main = styled.main`
     position: relative;
     display: flex;
+    margin-top: 155px;
 `
 const Card1 = styled.div`
     position: absolute;
@@ -94,11 +96,20 @@ const BaseStates = styled.div`
     height: 613px;
     left: 340px;
     top: 25px;
-img{
+`
+const Fundo = styled.img`
     height: 571px;
     width: 330px;
-}
 `
+const BaseStats = styled.img`
+    position: absolute;
+    left: 10px;
+    top: 25px;
+    width: 240;
+    
+`
+
+
 const Moves = styled.div`
     position: absolute;
     width: 200px;
@@ -114,17 +125,19 @@ const Poke = styled.img`
     width: 270px;
     height: 270px;
     left: 900px;
-    margin-top: 0px;
+    bottom: 500px;
+   
     
 `
 export default function Detalhes() {
 
     const navigate = useNavigate()
+    const params = useParams()
 
     const [pokemon, setPokemon] = useState(" ")
 
     const getPokemon = (() => {
-        axios.get('https://pokeapi.co/api/v2/pokemon/ditto'
+        axios.get(`https://pokeapi.co/api/v2/${params.pokemon.id}/`
         ).then((response) => {
             setPokemon(response.data)
             console.log(response.data)
@@ -135,6 +148,7 @@ export default function Detalhes() {
 
     useEffect(() => {
         getPokemon()
+
     }, [])
 
     
@@ -142,10 +156,10 @@ export default function Detalhes() {
     return(
 
         <Pai>
-
+            <Card/>
             <Header>
 
-                <u onClick={() => navigate("/")}>Todos os pokémons</u>
+                <u onClick={() => goToHome(navigate,"/")}>Todos os pokémons</u>
                 <img src={logopoke}></img>
                 <button>Remover Da Pokédex</button>
 
@@ -153,8 +167,6 @@ export default function Detalhes() {
 
             <h1>Detalhes</h1>
             
-            <Poke src={bulbin}/>
-
             <Main>
 
                 <Img src={retanguloverde}/>
@@ -165,6 +177,9 @@ export default function Detalhes() {
 
                     <PokebolaPequena src={pokebola}/>
 
+                    <Poke src={bulbin}/>
+
+
                     <Quadrado>
                         <img src={bulbadefrente}/>
                     </Quadrado>
@@ -174,7 +189,8 @@ export default function Detalhes() {
                     </Quadrado2>
 
                     <BaseStates>
-                        <img src={retangulomaisgrosso}/>
+                        <Fundo src={retangulomaisgrosso}/>
+                        <BaseStats src={statusbulba}/>
                     </BaseStates>
 
                     <Moves>
