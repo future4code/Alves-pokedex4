@@ -11,16 +11,20 @@ import { Cardcatch } from "./components/cardCatchPokedex/cardCatch";
 export function Pokedex() {
     const [pokemonList, setPokemonList] = useState([])
     const [excluir, setExcluir] = useState(false)
+    const[loading,setloading]=useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
+        setloading(true)
         JSON.parse(localStorage.getItem("catchedPokemons")).map((item) =>
                 axios.get(
                     BASE_URL + "/pokemon/" + item.id
                 ).then((res) => {
                     setPokemonList(pokemonList => [...pokemonList, res.data])
+                    setloading(false)
                 }).catch((err) =>{
                     alert(err.response.data)
+                    setloading(false)
                     })
             )
     }, [])
@@ -39,21 +43,19 @@ export function Pokedex() {
     
     const pokeList = pokemonList?.sort((a, b) => a.id - b.id).map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} removePokemon={removePokemon} />)
 
-    return (
-        <Screen>
-            
+    return <Screen>
             <Header>
                 <AllPokemons onClick={() => goToHome(navigate)}>Todos Pokémons</AllPokemons>
                 <Img src={opa} alt="" />
             </Header>
-            <Body >
+            {loading ? "...Loading" :<Body >
                 <Title>Meus Pokémons</Title>
                 <Main>
                     {pokeList}
                     {excluir && <Cardcatch setExcluir={setExcluir} />}
                 </Main>
-            </Body>
+            </Body>}
         </Screen>
-    )
+    
 }
 

@@ -176,7 +176,7 @@ export default function Detalhes() {
 
                     <PokebolaPequena src={pokebola}/>
 
-                    <Poke src={bulbin}/>
+                    <Poke src={pokebola}/>
 
 
                     <Quadrado>
