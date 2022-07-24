@@ -4,7 +4,6 @@ import styled from "styled-components";
 import logopoke from "../imagens/logopoke.png";
 import retanguloverde from "../imagens/retanguloverde.png";
 import pokebola from "../imagens/pokebola.png";
-import bulbin from "../imagens/bulbin.png";
 import bulbadefrente from "../imagens/bulbadefrente.png";
 import bulbadecostas from "../imagens/bulbadecostas.png";
 

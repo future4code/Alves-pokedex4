@@ -1,16 +1,13 @@
 import styled from "styled-components"
 
 export const CardStyle = styled.section`
-    width: 440px;
-    height: 210px;
-    left: 0px;
-    top: 0px;
-
-    /* background: #EAAB7D;  */
-    border-radius: 12px;
-
-    display: grid;
-    grid-template-columns: 50% 50%;
+  width: 440px;
+  height: 210px;
+  left: 0px;
+  top: 0px;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 50% 50%;
 `;
 
 export const Left = styled.section`
@@ -31,22 +28,21 @@ export const Number = styled.p`
   font-size: 16px;
   line-height: 19px;
   color: #FFFFFF;
-
   position: absolute;
   left: 23px;
   top: 25px;
 `;
 
 export const Name = styled.h1`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 39px;
-    color: #fff;
-    position: absolute;
-    bottom: 131px;
-    left: 23px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  color: #fff;
+  position: absolute;
+  bottom: 131px;
+  left: 23px;
 `;
 
 export const Details = styled.p`
@@ -75,7 +71,6 @@ export const TypeInside = styled.div`
   border: 1px dashed rgba(255, 255, 255, 0.47);
   border-radius: 8px;
   height: 31px;
-  /* background: #F44900; */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
