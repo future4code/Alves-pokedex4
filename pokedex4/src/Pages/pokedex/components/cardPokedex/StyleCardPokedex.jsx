@@ -1,13 +1,16 @@
 import styled from "styled-components"
 
 export const CardStyle = styled.section`
-  width: 440px;
+  width: 430px;
   height: 210px;
   left: 0px;
   top: 0px;
   border-radius: 12px;
   display: grid;
   grid-template-columns: 50% 50%;
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px){
+    width: 350px;
+  }
 `;
 
 export const Left = styled.section`
@@ -97,7 +100,6 @@ export const Excluir = styled.button`
   border: none;
   border-radius: 8px;
   background-color: #FF6262;
-;
   width: 146px;
   height: 38px;
   position: absolute;
@@ -118,4 +120,6 @@ export const Pokemon = styled.img`
   position: absolute;
   right: 3px;
   bottom: 73px;
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px){}
+  width: 165px;
 `;
