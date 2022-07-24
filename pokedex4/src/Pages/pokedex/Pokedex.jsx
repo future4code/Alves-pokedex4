@@ -4,9 +4,9 @@ import axios from "axios";
 import { BASE_URL } from "../../constants/BASE_URL"
 import { Card } from "./components/cardPokedex/CardPokedex"
 import { Screen, Header, Img, Body, Title, Main, AllPokemons } from './StylePokedex'
-import { goToHome} from "../../Routes/Coordinator";
+import { goToHome } from "../../Routes/Coordinator";
 import { useNavigate } from "react-router-dom";
-import { Remove } from "./components/cardCatchPokedex/Remove";
+import { Cardcatch } from "./components/cardCatchPokedex/cardCatch";
 
 export function Pokedex() {
     const [pokemonList, setPokemonList] = useState([])
@@ -14,34 +14,43 @@ export function Pokedex() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        JSON.parse(localStorage.getItem("pokedex")).map((item)=>
-            axios.get(
-                BASE_URL + "/pokemon/" +item
-                ).then((res) => setPokemonList(pokemonList => [...pokemonList, res.data])).catch((err) => console.log(err))
+        JSON.parse(localStorage.getItem("catchedPokemons")).map((item) =>
+                axios.get(
+                    BASE_URL + "/pokemon/" + item.id
+                ).then((res) => {
+                    setPokemonList(pokemonList => [...pokemonList, res.data])
+                }).catch((err) =>{
+                    alert(err.response.data)
+                    })
             )
-        }, [])
+    }, [])
 
-        const removePokemon = (id)=>{
-            setExcluir(!excluir)
-
-
-        }
-
+    
+    const removePokemon = (id) => {
+        setExcluir(!excluir)
+        let getLocal = JSON.parse(localStorage.getItem("catchedPokemons"))
+        let newLits= getLocal.filter((item)=>{
+            return item.id!==id
+        })
+        localStorage.setItem("catchedPokemons", JSON.stringify(newLits))
+        
+        
+    }
+    
     const pokeList = pokemonList?.sort((a, b) => a.id - b.id).map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} removePokemon={removePokemon} />)
 
     return (
         <Screen>
+            
             <Header>
-                <AllPokemons onClick={()=> goToHome(navigate)}>Todos Pokémons</AllPokemons>
+                <AllPokemons onClick={() => goToHome(navigate)}>Todos Pokémons</AllPokemons>
                 <Img src={opa} alt="" />
-
-
             </Header>
             <Body >
                 <Title>Meus Pokémons</Title>
                 <Main>
                     {pokeList}
-                    {excluir && <Remove setExcluir={setExcluir}/>}
+                    {excluir && <Cardcatch setExcluir={setExcluir} />}
                 </Main>
             </Body>
         </Screen>
