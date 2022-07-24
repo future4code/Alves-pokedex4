@@ -10,11 +10,10 @@ export function Card(props) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate()  
   const {cardColor} = getType(props.pokemon?.types[0].type.name)
   
-  const types = props.pokemon.types?.map((type, i) => {
+  const types = props.pokemon && types.map((type, i) => {
     const {color, symbol} = getType(type.type.name)
     return <TypeInside key={i} style={{backgroundColor: color}}> <img src={symbol} alt="" /> <TypeName>{capitalizeFirstLetter(type.type.name)}</TypeName> </TypeInside>
 })
@@ -24,7 +23,7 @@ export function Card(props) {
       <Left>
         <Number>#{props.pokemon?.id < 10 ? "0" + props.pokemon.id : props.pokemon.id}</Number>
         <Name>{capitalizeFirstLetter(props.pokemon.name)}</Name>
-        <Details onClick={()=> goToDetails(navigate)}>Detalhes</Details>
+        <Details onClick={()=> goToDetails(navigate, props.pokemon.id)}>Detalhes</Details>
         <Type>
           {types}
         </Type>
