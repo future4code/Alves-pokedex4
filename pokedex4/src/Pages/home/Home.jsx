@@ -23,9 +23,14 @@ export function Home() {
 
     const navigate = useNavigate()
 
-    const addPokemon = (pokemon) => {   
+    const addPokemon = (pokemon) => {
         let getLocal = JSON.parse(localStorage.getItem("catchedPokemons"))
+        pokemon["captured"] = true
         localStorage.setItem("catchedPokemons", JSON.stringify([...getLocal, pokemon]))
+        setShowGot(!showGot)
+        setTimeout(function(){
+            setShowGot(false);
+        },1000);
       }
 
     const pokeList = pokemonList?.sort((a, b) => a.id - b.id).map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} addPokemon={addPokemon} />)
