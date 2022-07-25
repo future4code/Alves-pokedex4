@@ -1,17 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import logopoke from "../imagens/logopoke.png";
-import retanguloverde from "../imagens/retanguloverde.png";
-import pokebola from "../imagens/pokebola.png";
-import bulbadefrente from "../imagens/bulbadefrente.png";
-import bulbadecostas from "../imagens/bulbadecostas.png";
+import logopoke from "../../imagens/logopoke.png"
+import retanguloverde from "../../imagens/retanguloverde.png";
+import pokebola from "../../imagens/pokebola.png";
+import bulbadefrente from "../../imagens/bulbadefrente.png";
+import bulbadecostas from "../../imagens/bulbadecostas.png";
 import { useNavigate, useParams } from "react-router-dom";
-import { goToHome } from "../Routes/Coordinator";
-import retangulomaisgrosso from "../imagens/retangulomaisgrosso.png";
-import retangulomaisfino from "../imagens/retangulomaisfino.png";
-import statusbulba from "../imagens/statusbulba.png";
-import { Card } from "./home/components/cardPokemon/Card";
+import { goToHome } from "../../Routes/Coordinator";
+import retangulomaisgrosso from "../../imagens/retangulomaisgrosso.png";
+import retangulomaisfino from "../../imagens/retangulomaisfino.png";
+import statusbulba from "../../imagens/statusbulba.png";
+import { Card } from "./CardDetalhes/CardDetalhe"
+
 
 // estilização:
 const Pai = styled.div`
