@@ -13,7 +13,7 @@ export function Card(props) {
   const navigate = useNavigate()  
   const {cardColor} = getType(props.pokemon?.types[0].type.name)
   
-  const types = props.pokemon && types.map((type, i) => {
+  const types = props.pokemon.types?.map((type, i) => {
     const {color, symbol} = getType(type.type.name)
     return <TypeInside key={i} style={{backgroundColor: color}}> <img src={symbol} alt="" /> <TypeName>{capitalizeFirstLetter(type.type.name)}</TypeName> </TypeInside>
 })
