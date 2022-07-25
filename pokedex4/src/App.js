@@ -17,9 +17,6 @@ const Div = styled.div`
 
 export default function App() {
   return (
-    <Div>
       <RouterComponet/>
-    </Div>
-
   );
 }

@@ -11,6 +11,7 @@ const Card = styled.section`
     left: calc(50% - 225.5px);
     display: flex;
     justify-content: center;
+    z-index: 100;
 `;
 
 const Title = styled.h1`
