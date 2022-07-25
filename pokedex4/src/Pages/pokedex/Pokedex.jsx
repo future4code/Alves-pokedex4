@@ -7,11 +7,14 @@ import { Screen, Header, Img, Body, Title, Main, AllPokemons } from './StylePoke
 import { goToHome } from "../../Routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 import { Cardcatch } from "./components/cardCatchPokedex/cardCatch";
+import { CardDuelo } from "./components/Duelo/Duelo";
+
 
 export function Pokedex() {
     const [pokemonList, setPokemonList] = useState([])
     const [excluir, setExcluir] = useState(false)
-    const[loading,setloading]=useState(false)
+    const [loading,setloading]=useState(false)
+    const [pokemonsEscolhidos,setPokemonsEscolhidos]=useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -37,11 +40,17 @@ export function Pokedex() {
             return item.id!==id
         })
         localStorage.setItem("catchedPokemons", JSON.stringify(newLits))
-        
+    }
+
+    const dueloPokemon=(id)=>{
+        let getLocalDuelo = JSON.parse(localStorage.getItem("catchedPokemons"))
+        let pokemonSelecionado= getLocalDuelo.filter((item)=> item.id===id)
+        setPokemonsEscolhidos([...pokemonsEscolhidos,pokemonSelecionado])
         
     }
+
     
-    const pokeList = pokemonList?.sort((a, b) => a.id - b.id).map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} removePokemon={removePokemon} />)
+    const pokeList = pokemonList?.sort((a, b) => a.id - b.id).map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} removePokemon={removePokemon} dueloPokemon={dueloPokemon} />)
 
     return <Screen>
             <Header>
@@ -53,6 +62,7 @@ export function Pokedex() {
                 <Main>
                     {pokeList}
                     {excluir && <Cardcatch setExcluir={setExcluir} />}
+                    {pokemonsEscolhidos.length>=2? <CardDuelo pokemonsEscolhidos={pokemonsEscolhidos}/>:false}
                 </Main>
             </Body>}
         </Screen>

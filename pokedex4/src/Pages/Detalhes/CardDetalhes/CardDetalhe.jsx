@@ -1,8 +1,8 @@
-import { CardStyle, Left, Number, Name, Details, Type, Back, Pokemon, Right, TypeInside, TypeName, Excluir, Duelo } from './StyleCardPokedex'
-import { getType } from '../../../../hooks/getColors';
-import back from '../../img/back.svg'
+import { CardStyle, Left, Number, Name, Details, Type, Back, Pokemon, Right, TypeInside, TypeName, Excluir, Duelo } from './StyleCardDetalhe'
+import { getType } from '../../../hooks/getColors'
+import back from '../../home/img/back.svg'
 import { useNavigate } from "react-router-dom";
-import { goToDetails } from '../../../../Routes/Coordinator'
+
 
 export function Card(props) {
   const navigate = useNavigate()
@@ -19,15 +19,13 @@ export function Card(props) {
       <Left>
         <Number>#{props.pokemon?.id < 10 ? "0" + props.pokemon.id : props.pokemon.id}</Number>
         <Name>{capitalizeFirstLetter(props.pokemon.name)}</Name>
-        <Details onClick={()=> goToDetails(navigate, props.pokemon.id)}>Detalhes</Details>
         <Type>
           {types}
         </Type>
       </Left>
       <Right>
         
-        <Excluir onClick={() => props.removePokemon(props.pokemon.id)}>Excluir!</Excluir>
-        <Duelo onClick={()=>props.dueloPokemon(props.pokemon.id)}>Duelo!</Duelo>
+
         <Back src={back} alt="" />
         <Pokemon src={props.pokemon.sprites.other["official-artwork"].front_default} />
       </Right>
