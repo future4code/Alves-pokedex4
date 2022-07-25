@@ -5,7 +5,7 @@ const Div = styled.div`
   background-color: grey;
   width: 1349px;
   height: 1100px;
-  max-width: 100%;
+  min-width: 100%;
   margin: 0px;
   @media screen and (min-device-width : 320px) and (max-device-width : 480px){
     max-width: 480px;
@@ -22,7 +22,8 @@ const Div = styled.div`
 `
 
 export default function App() {
-  return (
+  return (<Div>
       <RouterComponet/>
+      </Div>
   );
 }

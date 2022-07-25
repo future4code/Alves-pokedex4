@@ -46,9 +46,10 @@ export function Pokedex() {
         let getLocalDuelo = JSON.parse(localStorage.getItem("catchedPokemons"))
         let pokemonSelecionado= getLocalDuelo.filter((item)=> item.id===id)
         setPokemonsEscolhidos([...pokemonsEscolhidos,pokemonSelecionado])
+        if(pokemonsEscolhidos.length==0){return alert("Selecione mais um pokemon para o duelo!")}
         
     }
-
+    
     
     const pokeList = pokemonList?.sort((a, b) => a.id - b.id).map((pokemon) => <Card key={pokemon.name} pokemon={pokemon} removePokemon={removePokemon} dueloPokemon={dueloPokemon} />)
 
@@ -63,6 +64,7 @@ export function Pokedex() {
                     {pokeList}
                     {excluir && <Cardcatch setExcluir={setExcluir} />}
                     {pokemonsEscolhidos.length>=2? <CardDuelo pokemonsEscolhidos={pokemonsEscolhidos}/>:false}
+                    
                 </Main>
             </Body>}
         </Screen>

@@ -11,44 +11,32 @@ import { goToHome } from "../../Routes/Coordinator";
 import retangulomaisgrosso from "../../imagens/retangulomaisgrosso.png";
 import retangulomaisfino from "../../imagens/retangulomaisfino.png";
 import statusbulba from "../../imagens/statusbulba.png";
-import { Card } from "./CardDetalhes/CardDetalhe"
+import { Card } from "./CardDetalhes/CardDetalhe";
+import { Screen, Header, Body,Img, Title, Main, AllPokemons } from './StyleDetalhes'
+import opa from './img/image.svg'
+import { BASE_URL } from "../../constants/BASE_URL";
 
 
-// estilização:
-const Pai = styled.div`
-    position: relative;
-`
-const Img = styled.img`
+
+const Img1 = styled.img`
     position: absolute;
-    width: 1230px;
-    height: 625px;
-    left: 65px;
-    top: 50px;
+    width: 500px;
+    height: 300px;
+    left: 900px;
+    top: -7px;
+    z-index: 99;
 `
-const Header = styled.header`
-    background-color: white;
-    height: 120px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-img {
-    position: absolute;
-    width: 307px;
-    height: 100px;
-    left: 566px;
-    top: 15px;
-}
-`
-const Main = styled.main`
+
+const Main1 = styled.main`
     position: relative;
     display: flex;
     margin-top: 155px;
 `
 const Card1 = styled.div`
     position: absolute;
-    width: 1230px;
+    width: 800px;
     height: 625px;
-    left: 65px;
+    left: 250px;
     top: 50px;
 
 `
@@ -95,10 +83,10 @@ const BaseStates = styled.div`
     width: 343px;
     height: 613px;
     left: 340px;
-    top: 25px;
+    top: 200px;
 `
 const Fundo = styled.img`
-    height: 571px;
+    height: 400px;
     width: 330px;
 `
 const BaseStats = styled.img`
@@ -129,20 +117,20 @@ const Poke = styled.img`
    
     
 `
-export default function Detalhes() {
+export function Detalhes() {
 
     const navigate = useNavigate()
     const params = useParams()
 
-    const [pokemon, setPokemon] = useState(" ")
+    const [pokemon, setPokemon] = useState()
 
     const getPokemon = (() => {
-        axios.get(`https://pokeapi.co/api/v2/${params.pokemon.id}/`
-        ).then((response) => {
+        axios.get(BASE_URL + "/pokemon/" + params.id)
+        .then((response) => {
             setPokemon(response.data)
             console.log(response.data)
         }).catch((err) => {
-            console.log(err.data)
+            console.log(err)
         })
     })
 
@@ -151,25 +139,19 @@ export default function Detalhes() {
 
     }, [])
 
-    
+    console.log(pokemon)
 
-    return(
-
-        <Pai>
-            <Card/>
-            <Header>
-
-                <u onClick={() => goToHome(navigate,"/")}>Todos os pokémons</u>
-                <img src={logopoke}></img>
-                <button>Remover Da Pokédex</button>
-
+    return<Screen>
+             <Header>
+                <AllPokemons onClick={() => goToHome(navigate)}>Todos Pokémons</AllPokemons>
+                <Img src={opa} alt="" />
             </Header>
 
             <h1>Detalhes</h1>
             
-            <Main>
+            {pokemon ? <Main>
 
-                <Img src={retanguloverde}/>
+                <Img1 src={pokemon.sprites.other["official-artwork"].front_default}/>
                 <PokeBola src={pokebola}/>
 
                 <Card1>
@@ -181,11 +163,11 @@ export default function Detalhes() {
 
 
                     <Quadrado>
-                        <img src={bulbadefrente}/>
+                        <img src={pokemon.sprites.front_default}/>
                     </Quadrado>
             
                     <Quadrado2>
-                        <img src={bulbadecostas}/>
+                        <img src={pokemon.sprites.back_default}/>
                     </Quadrado2>
 
                     <BaseStates>
@@ -200,7 +182,7 @@ export default function Detalhes() {
                     
                 </Card1>
 
-            </Main>
-        </Pai>
-    )
+            </Main>:"...loading"}
+        </Screen>
+    
 }
