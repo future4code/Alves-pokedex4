@@ -5,10 +5,10 @@ Nome dos integrantes:
 - Laksmin Monteiro Bittencourt
 - Willson Santos De oliveira
 
-Link do Surge: remarkable-bedroom.surge.sh
+Link do Surge: https://inquisitive-texture.surge.sh/
 
 O que funciona:
-- Tudo
+
 
 
 O que não funciona:
