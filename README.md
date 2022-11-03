@@ -1,16 +1,14 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- André De faria Machado Eletherio
+- Laksmin Monteiro Bittencourt
+- Willson Santos De oliveira
 
-Link do Surge: www.link.com.br
+Link do Surge: https://inquisitive-texture.surge.sh/
 
 O que funciona:
-- Item 1
-- Item 2
 
-O que não funciona: 
-- Item 3
-- Item 4
+
+
+O que não funciona:
